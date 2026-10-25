@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>inssworksoft | 모바일 인디게임 개발사</title>
+    <!-- 구글 폰트 (Pretendard 스타일의 Noto Sans KR) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f1117;
+            --card-bg: #1a1d26;
+            --text-main: #f1f5f9;
+            --text-sub: #94a3b8;
+            --accent: #ff3b5c; /* 원스토어 무드의 레드/코랄 포인트 */
+            --accent-gradient: linear-gradient(135deg, #ff3b5c, #ff6b8b);
+            --border-color: #2a2f3d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #08090c;
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* PC 접속 시 모바일 뷰어 프레임 */
+        .mobile-container {
+            width: 100%;
+            max-width: 480px;
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
+        }
+
+        /* PC 감지 알림 배너 */
+        .pc-notice {
+            display: none;
+            background: rgba(255, 59, 92, 0.15);
+            border-bottom: 1px solid var(--accent);
+            color: #ff8ca3;
+            font-size: 13px;
+            padding: 10px 16px;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        @media (min-width: 768px) {
+            .pc-notice {
+                display: block;
+            }
+        }
+
+        /* 헤더 */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 17, 23, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav a {
+            color: var(--text-sub);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            margin-left: 14px;
+            transition: color 0.2s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--text-main);
+        }
+
+        /* 메인 컨텐츠 영역 */
+        main {
+            padding: 24px 20px 60px;
+            display: flex;
+            flex-direction: column;
+            gap: 36px;
+        }
+
+        /* 인트로 & 비전 섹션 */
+        .intro-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .badge {
+            align-self: flex-start;
+            font-size: 11px;
+            font-weight: 700;
+            color: #fff;
+            background: var(--accent-gradient);
+            padding: 4px 10px;
+            border-radius: 100px;
+            text-transform: uppercase;
+        }
+
+        .intro-title {
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.4;
+            letter-spacing: -0.5px;
+        }
+
+        .intro-desc {
+            font-size: 14px;
+            color: var(--text-sub);
+            line-height: 1.7;
+            word-break: keep-all;
+        }
+
+        .platform-tag {
+            margin-top: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 12px;
+            color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .platform-tag span {
+            font-weight: bold;
+            color: #4ade80;
+        }
+
+        /* 섹션 공통 타이틀 */
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-size: 17px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            font-size: 12px;
+            color: var(--text-sub);
+        }
+
+        /* 게임 리스트 */
+        .game-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .game-item {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 14px;
+            transition: transform 0.15s, border-color 0.15s;
+        }
+
+        .game-item:active {
+            transform: scale(0.98);
+            border-color: var(--accent);
+        }
+
+        .game-thumb {
+            width: 72px;
+            height: 72px;
+            border-radius: 14px;
+            background: #2a2f3d;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .game-info {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .game-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .game-meta {
+            font-size: 13px;
+            color: var(--text-sub);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .store-btn {
+            background: rgba(255, 59, 92, 0.12);
+            color: var(--accent);
+            border: 1px solid rgba(255, 59, 92, 0.3);
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 12px;
+            font-weight: 600;
+            flex-shrink: 0;
+            text-align: center;
+        }
+
+        /* 푸터 */
+        footer {
+            margin-top: auto;
+            border-top: 1px solid var(--border-color);
+            padding: 24px 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #64748b;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-container">
+        <!-- PC 접속자 전용 안내 배너 -->
+        <div class="pc-notice">
+            📱 <strong>모바일 전용 최적화 페이지입니다.</strong><br>
+            스마트폰 브라우저(삼성 갤럭시 등)로 접속하시면 더욱 쾌적하게 이용하실 수 있습니다.
+        </div>
+
+        <!-- 상단 헤더 -->
+        <header>
+            <div class="logo">inssworksoft</div>
+            <nav>
+                <a href="#about">소개</a>
+                <a href="#games">제작게임</a>
+            </nav>
+        </header>
+
+        <main>
+            <!-- 1. 회사 소개 및 비전 -->
+            <section id="about" class="intro-card">
+                <span class="badge">VISION 2026</span>
+                <h1 class="intro-title">
+                    익숙한 재미 위에<br>
+                    독창성을 더한 모바일 게임
+                </h1>
+                <p class="intro-desc">
+                    AI 바이럴 코딩이 본격화된 2026년을 시작으로, 우리는 친근하고 익숙하면서도 전에 없던 새로운 아이디어를 결합한 게임을 만들어가고 있습니다. 거창함보다는 플레이어의 일상에 잔잔하고 소소한 즐거움을 전하는 인디 개발사입니다.
+                </p>
+                <div class="platform-tag">
+                    <span>Android ONLY</span> 삼성 갤럭시 등 안드로이드 원스토어 완벽 대응
+                </div>
+            </section>
+
+            <!-- 2. 제작 게임 목록 -->
+            <section id="games">
+                <div class="section-header">
+                    <h2 class="section-title">제작 게임</h2>
+                    <span class="section-subtitle">클릭 시 원스토어로 이동</span>
+                </div>
+
+                <div class="game-list">
+                    <!-- 게임 1 -->
+                    <!-- href에 실제 원스토어 게임 링크를 넣어주세요 -->
+                    <a href="https://m.onestore.co.kr" target="_blank" rel="noopener noreferrer" class="game-item">
+                        <img src="images/game1.png" alt="게임 아이콘" class="game-thumb" onerror="this.src='https://via.placeholder.com/72/2a2f3d/ffffff?text=GAME'">
+                        <div class="game-info">
+                            <div class="game-title">고양이와 타이쿤</div>
+                            <div class="game-meta">
+                                <span>2026</span> · <span>원스토어 출시</span>
+                            </div>
+                        </div>
+                        <div class="store-btn">설치</div>
+                    </a>
+
+                    <!-- 게임 2 -->
+                    <a href="https://m.onestore.co.kr" target="_blank" rel="noopener noreferrer" class="game-item">
+                        <img src="images/game2.png" alt="게임 아이콘" class="game-thumb" onerror="this.src='https://via.placeholder.com/72/2a2f3d/ffffff?text=GAME'">
+                        <div class="game-info">
+                            <div class="game-title">방구석 던전 클리너</div>
+                            <div class="game-meta">
+                                <span>2026</span> · <span>원스토어 출시</span>
+                            </div>
+                        </div>
+                        <div class="store-btn">설치</div>
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <!-- 푸터 -->
+        <footer>
+            <p>© 2026 inssworksoft. All rights reserved.</p>
+            <p>Designed for OneStore & Android Devices.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
