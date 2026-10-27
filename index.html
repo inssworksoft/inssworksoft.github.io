@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>inssworksoft | 모바일 인디게임 개발사</title>
-    <!-- 구글 폰트 (Pretendard 스타일의 Noto Sans KR + 영문 볼드 폰트) -->
+    <!-- 구글 폰트 (Pretendard 스타일의 Noto Sans KR + 볼드 영문 폰트) -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Noto+Sans+KR:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -77,21 +77,19 @@
             z-index: 100;
         }
 
-        /* 반짝이는 금속 텍스트 효과 (Metallic Shimmer) */
+        /* 반짝이는 금속 특수효과 (Metallic Shimmer) */
         .logo-metallic {
             font-family: 'Montserrat', sans-serif;
             font-size: 22px;
             font-weight: 900;
             letter-spacing: 0.5px;
             text-transform: lowercase;
-            
-            /* 밝은 크롬/백금 금속 그라데이션 */
             background: linear-gradient(
                 110deg,
                 #94a3b8 0%,
                 #e2e8f0 20%,
                 #ffffff 45%,
-                #ffe082 50%, /* 골드/화이트 섬광 하이라이트 */
+                #ffe082 50%,
                 #ffffff 55%,
                 #e2e8f0 75%,
                 #64748b 100%
@@ -99,8 +97,6 @@
             background-size: 250% 100%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            
-            /* 뚜렷하고 강렬한 빛 스캔 애니메이션 */
             animation: metalShimmer 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
             filter: drop-shadow(0 0 12px rgba(255, 224, 130, 0.45)) drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
         }
@@ -116,22 +112,21 @@
 
         /* 메인 컨텐츠 영역 */
         main {
-            padding: 28px 20px 60px;
+            padding: 24px 20px 60px;
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 28px;
         }
 
-        /* 회사 소개 & 비전 카드 */
+        /* 소개 카드 */
         .intro-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 28px 22px;
+            border-radius: 18px;
+            padding: 22px 20px;
             display: flex;
             flex-direction: column;
-            gap: 16px;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+            gap: 14px;
         }
 
         .badge {
@@ -140,86 +135,155 @@
             font-weight: 700;
             color: #fff;
             background: var(--accent-gradient);
-            padding: 5px 12px;
+            padding: 4px 10px;
             border-radius: 100px;
-            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .intro-title {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
-            line-height: 1.45;
+            line-height: 1.4;
             letter-spacing: -0.5px;
-            color: #ffffff;
         }
 
         .intro-desc {
-            font-size: 15px;
+            font-size: 14px;
             color: var(--text-sub);
-            line-height: 1.8;
+            line-height: 1.7;
             word-break: keep-all;
         }
 
         .platform-tag {
-            margin-top: 6px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 10px;
-            padding: 12px 14px;
-            font-size: 13px;
+            margin-top: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 12px;
             color: #cbd5e1;
             display: flex;
             align-items: center;
             gap: 8px;
-            line-height: 1.4;
         }
 
         .platform-tag span {
             font-weight: bold;
             color: #4ade80;
-            flex-shrink: 0;
         }
 
-        /* 주요 포인트 강조 박스 */
-        .feature-box {
-            display: grid;
-            grid-template-columns: 1fr;
+        /* 게임 리스트 */
+        .game-list {
+            display: flex;
+            flex-direction: column;
             gap: 12px;
-            margin-top: 8px;
         }
 
-        .feature-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 16px;
-        }
-
-        .feature-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: #f8fafc;
-            margin-bottom: 4px;
+        /* 게임 카드 자체를 터치 버튼으로 사용 */
+        .game-item {
+            text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 14px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 12px 14px;
+            transition: transform 0.15s, border-color 0.15s, background-color 0.15s;
         }
 
-        .feature-desc {
-            font-size: 13px;
+        .game-item:active {
+            transform: scale(0.98);
+            border-color: var(--accent);
+            background-color: #212532;
+        }
+
+        .game-item.disabled {
+            cursor: default;
+            opacity: 0.75;
+        }
+
+        .game-item.disabled:active {
+            transform: none;
+            border-color: var(--border-color);
+            background-color: var(--card-bg);
+        }
+
+        .game-thumb {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: #2a2f3d;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .thumb-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .game-info {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        /* 제목: 줄바꿈 없이 한 줄로 깔끔하게 처리 */
+        .game-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-main);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* 설명/메타 정보: 줄바꿈 없이 한 줄 유지 */
+        .game-meta {
+            font-size: 12px;
             color: var(--text-sub);
-            line-height: 1.5;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* 클릭 유도 화살표 아이콘 */
+        .item-arrow {
+            color: #475569;
+            font-size: 16px;
+            flex-shrink: 0;
+            padding-right: 4px;
+        }
+
+        /* 출시 예정 배지 (줄바꿈 없이 우측 표시) */
+        .coming-tag {
+            font-size: 11px;
+            color: #94a3b8;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 4px 8px;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
         /* 푸터 */
         footer {
             margin-top: auto;
             border-top: 1px solid var(--border-color);
-            padding: 28px 20px;
+            padding: 24px 20px;
             text-align: center;
             font-size: 12px;
             color: #64748b;
-            line-height: 1.7;
+            line-height: 1.6;
         }
     </style>
 </head>
@@ -238,7 +302,7 @@
         </header>
 
         <main>
-            <!-- 회사 소개 및 비전 (원페이지 단독 구성) -->
+            <!-- 1. 회사 소개 및 비전 -->
             <section class="intro-card">
                 <span class="badge">VISION 2026</span>
                 <h1 class="intro-title">
@@ -246,23 +310,53 @@
                     독창성을 더한 모바일 게임
                 </h1>
                 <p class="intro-desc">
-                    AI 바이럴 코딩이 보편화된 2026년을 기점으로 본격적인 개발 여정을 시작했습니다. 거창함보다는 플레이어의 일상 속에 자연스럽게 스며드는 친근하고 익숙한 경험, 그러면서도 참신한 아이디어를 가미해 소소한 즐거움을 선사하는 게임을 꾸준히 선보입니다.
+                    AI 바이럴 코딩이 보편화된 2026년을 기점으로 본격적인 개발을 시작했습니다. 친근하고 익숙하면서도 독창적인 요소를 가미해 소소한 재미를 주는 게임을 지속 개발합니다.
                 </p>
-
                 <div class="platform-tag">
-                    <span>Android ONLY</span>
-                    삼성 갤럭시 등 안드로이드 원스토어 기반 최적화
+                    <span>Android ONLY</span> 삼성 갤럭시 등 안드로이드 원스토어 구동
                 </div>
+            </section>
 
-                <div class="feature-box">
-                    <div class="feature-item">
-                        <div class="feature-title">⚡ AI 바이럴 코딩 기반 혁신</div>
-                        <div class="feature-desc">AI 개발 파이프라인을 적극 접목하여 빠르고 기민한 프로토타이핑과 차별화된 플레이 방식을 구현합니다.</div>
+            <!-- 2. 게임 리스트 (별도 버튼 없이 카드 터치로 즉시 이동) -->
+            <section class="game-list">
+                <!-- 게임 1: 모자섞기게임 -->
+                <a href="https://onesto.re/0000747924" target="_blank" rel="noopener noreferrer" class="game-item">
+                    <img src="images/icon_1.png" alt="모자섞기게임" class="game-thumb" onerror="this.src='https://via.placeholder.com/60/2a2f3d/ffffff?text=GAME'">
+                    <div class="game-info">
+                        <div class="game-title">모자섞기게임</div>
+                        <div class="game-meta">2026 리뉴얼 · 원스토어</div>
                     </div>
-                    <div class="feature-item">
-                        <div class="feature-title">🎮 원스토어 타겟 개발</div>
-                        <div class="feature-desc">국내 안드로이드 이용자 생태계에 초점을 맞춰 가볍고 쾌적한 전용 모바일 경험을 제공합니다.</div>
+                    <div class="item-arrow">›</div>
+                </a>
+
+                <!-- 게임 2: 전국퀴즈대회 -->
+                <a href="https://onesto.re/0001010454" target="_blank" rel="noopener noreferrer" class="game-item">
+                    <img src="images/icon_2.png" alt="전국퀴즈대회" class="game-thumb" onerror="this.src='https://via.placeholder.com/60/2a2f3d/ffffff?text=GAME'">
+                    <div class="game-info">
+                        <div class="game-title">전국퀴즈대회</div>
+                        <div class="game-meta">2026 리뉴얼 · 원스토어</div>
                     </div>
+                    <div class="item-arrow">›</div>
+                </a>
+
+                <!-- 게임 3: BeatOne (다이렉트 웹 구동 링크로 정상화) -->
+                <a href="https://onestore.inssworksoft.workers.dev/" target="_blank" rel="noopener noreferrer" class="game-item">
+                    <img src="images/icon_3.png" alt="BeatOne" class="game-thumb" onerror="this.src='https://via.placeholder.com/60/2a2f3d/ffffff?text=GAME'">
+                    <div class="game-info">
+                        <div class="game-title">BeatOne</div>
+                        <div class="game-meta">2026 · 원스토어 AI게임 (설치형 재제작 예정)</div>
+                    </div>
+                    <div class="item-arrow">›</div>
+                </a>
+
+                <!-- 게임 4: 디펜스말고공격 -->
+                <div class="game-item disabled">
+                    <div class="game-thumb thumb-placeholder">COMING</div>
+                    <div class="game-info">
+                        <div class="game-title">디펜스말고공격</div>
+                        <div class="game-meta">2026 · 원스토어</div>
+                    </div>
+                    <div class="coming-tag">11월 출시예정</div>
                 </div>
             </section>
         </main>
@@ -270,7 +364,7 @@
         <!-- 푸터 -->
         <footer>
             <p>© 2026 inssworksoft. All rights reserved.</p>
-            <p>Designed for OneStore & Android Ecosystem.</p>
+            <p>Designed for OneStore & Android Devices.</p>
         </footer>
     </div>
 
