@@ -203,6 +203,16 @@
             border-color: var(--accent);
         }
 
+        /* 출시 예정 등 클릭 비활성화용 */
+        .game-item.disabled {
+            cursor: default;
+            opacity: 0.85;
+        }
+        .game-item.disabled:active {
+            transform: none;
+            border-color: var(--border-color);
+        }
+
         .game-thumb {
             width: 72px;
             height: 72px;
@@ -211,6 +221,17 @@
             object-fit: cover;
             flex-shrink: 0;
             border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* 썸네일 없는 경우 대체 플레이스홀더 */
+        .thumb-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
 
         .game-info {
@@ -236,16 +257,29 @@
             gap: 6px;
         }
 
+        .game-note {
+            font-size: 11px;
+            color: #e2e8f0;
+            margin-top: 4px;
+            opacity: 0.8;
+        }
+
         .store-btn {
             background: rgba(255, 59, 92, 0.12);
             color: var(--accent);
             border: 1px solid rgba(255, 59, 92, 0.3);
             border-radius: 8px;
-            padding: 6px 10px;
+            padding: 6px 12px;
             font-size: 12px;
             font-weight: 600;
             flex-shrink: 0;
             text-align: center;
+        }
+
+        .store-btn.coming-soon {
+            background: rgba(255, 255, 255, 0.05);
+            color: #64748b;
+            border-color: rgba(255, 255, 255, 0.1);
         }
 
         /* 푸터 */
@@ -302,30 +336,54 @@
                 </div>
 
                 <div class="game-list">
-                    <!-- 게임 1 -->
-                    <!-- href에 실제 원스토어 게임 링크를 넣어주세요 -->
-                    <a href="https://m.onestore.co.kr" target="_blank" rel="noopener noreferrer" class="game-item">
-                        <img src="images/game1.png" alt="게임 아이콘" class="game-thumb" onerror="this.src='https://via.placeholder.com/72/2a2f3d/ffffff?text=GAME'">
+                    <!-- 게임 1: 모자섞기게임 -->
+                    <a href="https://onesto.re/0000747924" target="_blank" rel="noopener noreferrer" class="game-item">
+                        <img src="images/icon_1.png" alt="모자섞기게임" class="game-thumb" onerror="this.src='https://via.placeholder.com/72/2a2f3d/ffffff?text=GAME'">
                         <div class="game-info">
-                            <div class="game-title">고양이와 타이쿤</div>
+                            <div class="game-title">모자섞기게임</div>
                             <div class="game-meta">
-                                <span>2026</span> · <span>원스토어 출시</span>
+                                <span>2026 리뉴얼</span> · <span>원스토어</span>
                             </div>
                         </div>
                         <div class="store-btn">설치</div>
                     </a>
 
-                    <!-- 게임 2 -->
-                    <a href="https://m.onestore.co.kr" target="_blank" rel="noopener noreferrer" class="game-item">
-                        <img src="images/game2.png" alt="게임 아이콘" class="game-thumb" onerror="this.src='https://via.placeholder.com/72/2a2f3d/ffffff?text=GAME'">
+                    <!-- 게임 2: 전국퀴즈대회 -->
+                    <a href="https://onesto.re/0001010454" target="_blank" rel="noopener noreferrer" class="game-item">
+                        <img src="images/icon_2.png" alt="전국퀴즈대회" class="game-thumb" onerror="this.src='https://via.placeholder.com/72/2a2f3d/ffffff?text=GAME'">
                         <div class="game-info">
-                            <div class="game-title">방구석 던전 클리너</div>
+                            <div class="game-title">전국퀴즈대회</div>
                             <div class="game-meta">
-                                <span>2026</span> · <span>원스토어 출시</span>
+                                <span>2026 리뉴얼</span> · <span>원스토어</span>
                             </div>
                         </div>
                         <div class="store-btn">설치</div>
                     </a>
+
+                    <!-- 게임 3: BeatOne -->
+                    <a href="onestore://common/web?url=https%3A%2F%2Fonestore.inssworksoft.workers.dev%2F" class="game-item">
+                        <img src="images/icon_3.png" alt="BeatOne" class="game-thumb" onerror="this.src='https://via.placeholder.com/72/2a2f3d/ffffff?text=GAME'">
+                        <div class="game-info">
+                            <div class="game-title">BeatOne</div>
+                            <div class="game-meta">
+                                <span>2026</span> · <span>원스토어 (AI게임)</span>
+                            </div>
+                            <div class="game-note">※ 설치형 버전으로 재제작 예정</div>
+                        </div>
+                        <div class="store-btn">플레이</div>
+                    </a>
+
+                    <!-- 게임 4: 디펜스말고공격 (출시예정) -->
+                    <div class="game-item disabled">
+                        <div class="game-thumb thumb-placeholder">COMING</div>
+                        <div class="game-info">
+                            <div class="game-title">디펜스말고공격</div>
+                            <div class="game-meta">
+                                <span>2026</span> · <span>원스토어</span>
+                            </div>
+                        </div>
+                        <div class="store-btn coming-soon">출시예정</div>
+                    </div>
                 </div>
             </section>
         </main>
