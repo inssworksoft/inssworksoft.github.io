@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>inssworksoft | 모바일 인디게임 개발사</title>
-    <!-- 구글 폰트 (Pretendard 스타일의 Noto Sans KR + 볼드 영문 폰트) -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Noto+Sans+KR:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- 구글 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #0f1117;
             --card-bg: #1a1d26;
             --text-main: #f1f5f9;
             --text-sub: #94a3b8;
-            --accent: #ff3b5c; /* 원스토어 무드의 레드 포인트 */
+            --accent: #ff3b5c;
             --accent-gradient: linear-gradient(135deg, #ff3b5c, #ff6b8b);
             --border-color: #2a2f3d;
         }
@@ -77,28 +77,28 @@
             z-index: 100;
         }
 
-        /* 반짝이는 금속 특수효과 (Metallic Shimmer) */
+        /* 반짝이는 금속 특수효과 (좌우 늘림 완전 제거) */
         .logo-metallic {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 22px;
+            font-size: 21px;
             font-weight: 900;
-            letter-spacing: 0.5px;
+            letter-spacing: 0; /* 좌우 자간 늘림 없음 */
             text-transform: lowercase;
+            display: inline-block;
             background: linear-gradient(
                 110deg,
                 #94a3b8 0%,
-                #e2e8f0 20%,
+                #f1f5f9 20%,
                 #ffffff 45%,
                 #ffe082 50%,
                 #ffffff 55%,
-                #e2e8f0 75%,
+                #f1f5f9 75%,
                 #64748b 100%
             );
             background-size: 250% 100%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: metalShimmer 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-            filter: drop-shadow(0 0 12px rgba(255, 224, 130, 0.45)) drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
+            filter: drop-shadow(0 0 10px rgba(255, 224, 130, 0.45));
         }
 
         @keyframes metalShimmer {
@@ -178,7 +178,7 @@
             gap: 12px;
         }
 
-        /* 게임 카드 자체를 터치 버튼으로 사용 */
+        /* 카드 자체를 바로가기 버튼으로 사용 */
         .game-item {
             text-decoration: none;
             display: flex;
@@ -236,7 +236,7 @@
             gap: 4px;
         }
 
-        /* 제목: 줄바꿈 없이 한 줄로 깔끔하게 처리 */
+        /* 줄바꿈 없는 한 줄 정렬 */
         .game-title {
             font-size: 15px;
             font-weight: 700;
@@ -246,7 +246,6 @@
             text-overflow: ellipsis;
         }
 
-        /* 설명/메타 정보: 줄바꿈 없이 한 줄 유지 */
         .game-meta {
             font-size: 12px;
             color: var(--text-sub);
@@ -255,7 +254,6 @@
             text-overflow: ellipsis;
         }
 
-        /* 클릭 유도 화살표 아이콘 */
         .item-arrow {
             color: #475569;
             font-size: 16px;
@@ -263,7 +261,6 @@
             padding-right: 4px;
         }
 
-        /* 출시 예정 배지 (줄바꿈 없이 우측 표시) */
         .coming-tag {
             font-size: 11px;
             color: #94a3b8;
@@ -296,7 +293,7 @@
             스마트폰 브라우저(삼성 갤럭시 등)로 접속하시면 더욱 쾌적하게 이용하실 수 있습니다.
         </div>
 
-        <!-- 상단 헤더: 반짝이는 금속 특수효과 로고 -->
+        <!-- 상단 헤더: 금속 특수효과 (기본 비율) -->
         <header>
             <div class="logo-metallic">inssworksoft</div>
         </header>
@@ -317,7 +314,7 @@
                 </div>
             </section>
 
-            <!-- 2. 게임 리스트 (별도 버튼 없이 카드 터치로 즉시 이동) -->
+            <!-- 2. 게임 리스트 -->
             <section class="game-list">
                 <!-- 게임 1: 모자섞기게임 -->
                 <a href="https://onesto.re/0000747924" target="_blank" rel="noopener noreferrer" class="game-item">
@@ -339,8 +336,8 @@
                     <div class="item-arrow">›</div>
                 </a>
 
-                <!-- 게임 3: BeatOne (다이렉트 웹 구동 링크로 정상화) -->
-                <a href="https://onestore.inssworksoft.workers.dev/" target="_blank" rel="noopener noreferrer" class="game-item">
+                <!-- 게임 3: BeatOne (원스토어 앱 강제 실행 인텐트) -->
+                <a href="intent://common/web?url=https%3A%2F%2Fonestore.inssworksoft.workers.dev%2F#Intent;scheme=onestore;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;package=com.skt.skaf.A000Z00040;end" class="game-item">
                     <img src="images/icon_3.png" alt="BeatOne" class="game-thumb" onerror="this.src='https://via.placeholder.com/60/2a2f3d/ffffff?text=GAME'">
                     <div class="game-info">
                         <div class="game-title">BeatOne</div>
