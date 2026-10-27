@@ -203,7 +203,7 @@
             border-color: var(--accent);
         }
 
-        /* 출시 예정 등 클릭 비활성화용 */
+        /* 비활성화 아이템 */
         .game-item.disabled {
             cursor: default;
             opacity: 0.85;
@@ -223,7 +223,6 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* 썸네일 없는 경우 대체 플레이스홀더 */
         .thumb-placeholder {
             display: flex;
             align-items: center;
@@ -237,13 +236,16 @@
         .game-info {
             flex: 1;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
         }
 
         .game-title {
             font-size: 16px;
             font-weight: 700;
             color: var(--text-main);
-            margin-bottom: 4px;
+            margin-bottom: 2px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -252,16 +254,19 @@
         .game-meta {
             font-size: 13px;
             color: var(--text-sub);
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            line-height: 1.4;
+        }
+
+        .game-meta span.block-line {
+            display: block;
         }
 
         .game-note {
             font-size: 11px;
-            color: #e2e8f0;
-            margin-top: 4px;
-            opacity: 0.8;
+            color: #cbd5e1;
+            line-height: 1.4;
+            margin-top: 3px;
+            opacity: 0.85;
         }
 
         .store-btn {
@@ -274,12 +279,14 @@
             font-weight: 600;
             flex-shrink: 0;
             text-align: center;
+            white-space: nowrap;
         }
 
         .store-btn.coming-soon {
             background: rgba(255, 255, 255, 0.05);
-            color: #64748b;
-            border-color: rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            border-color: rgba(255, 255, 255, 0.12);
+            padding: 6px 10px;
         }
 
         /* 푸터 */
@@ -342,7 +349,7 @@
                         <div class="game-info">
                             <div class="game-title">모자섞기게임</div>
                             <div class="game-meta">
-                                <span>2026 리뉴얼</span> · <span>원스토어</span>
+                                <span>2026 리뉴얼 · 원스토어</span>
                             </div>
                         </div>
                         <div class="store-btn">설치</div>
@@ -354,35 +361,38 @@
                         <div class="game-info">
                             <div class="game-title">전국퀴즈대회</div>
                             <div class="game-meta">
-                                <span>2026 리뉴얼</span> · <span>원스토어</span>
+                                <span>2026 리뉴얼 · 원스토어</span>
                             </div>
                         </div>
                         <div class="store-btn">설치</div>
                     </a>
 
-                    <!-- 게임 3: BeatOne -->
-                    <a href="onestore://common/web?url=https%3A%2F%2Fonestore.inssworksoft.workers.dev%2F" class="game-item">
+                    <!-- 게임 3: BeatOne (Intent 스키마 및 웹 Fallback 처리) -->
+                    <a href="intent://common/web?url=https%3A%2F%2Fonestore.inssworksoft.workers.dev%2F#Intent;scheme=onestore;package=com.skt.skaf.A000Z00040;S.browser_fallback_url=https%3A%2F%2Fonestore.inssworksoft.workers.dev%2F;end" class="game-item">
                         <img src="images/icon_3.png" alt="BeatOne" class="game-thumb" onerror="this.src='https://via.placeholder.com/72/2a2f3d/ffffff?text=GAME'">
                         <div class="game-info">
                             <div class="game-title">BeatOne</div>
                             <div class="game-meta">
-                                <span>2026</span> · <span>원스토어 (AI게임)</span>
+                                <span>2026 · 원스토어</span>
+                                <span class="block-line">(AI게임)</span>
                             </div>
-                            <div class="game-note">※ 설치형 버전으로 재제작 예정</div>
+                            <div class="game-note">
+                                ※ 설치형 버전으로<br>재제작 예정
+                            </div>
                         </div>
                         <div class="store-btn">플레이</div>
                     </a>
 
-                    <!-- 게임 4: 디펜스말고공격 (출시예정) -->
+                    <!-- 게임 4: 디펜스말고공격 -->
                     <div class="game-item disabled">
                         <div class="game-thumb thumb-placeholder">COMING</div>
                         <div class="game-info">
                             <div class="game-title">디펜스말고공격</div>
                             <div class="game-meta">
-                                <span>2026</span> · <span>원스토어</span>
+                                <span>2026 · 원스토어</span>
                             </div>
                         </div>
-                        <div class="store-btn coming-soon">출시예정</div>
+                        <div class="store-btn coming-soon">11월 출시예정</div>
                     </div>
                 </div>
             </section>
