@@ -373,12 +373,12 @@
                     <div class="item-arrow">›</div>
                 </a>
 
-                <!-- 게임 3: BeatOne (원스토어 앱 다이렉트 트리거) -->
-                <div onclick="launchBeatOne()" class="game-item">
+                <!-- 게임 3: BeatOne  -->
+                <a href="https://onesto.re/OA01011676" target="_blank" rel="noopener noreferrer" class="game-item">
                     <img src="images/icon_3.png" alt="BeatOne" class="game-thumb" onerror="this.src='https://via.placeholder.com/60/2a2f3d/ffffff?text=GAME'">
                     <div class="game-info">
                         <div class="game-title">BeatOne</div>
-                        <div class="game-meta">2026 · 원스토어 AI게임(웹)</div>
+                        <div class="game-meta">2026 · 원스토어</div>
                         <div class="game-subnote"></div>
                     </div>
                     <div class="item-arrow">›</div>
@@ -416,23 +416,6 @@
         </footer>
     </div>
 
-    <!-- BeatOne 원스토어 앱 실행 스크립트 -->
-    <script>
-        function launchBeatOne() {
-            var targetWebUrl = "https://onestore.inssworksoft.workers.dev/";
-            var onestoreScheme = "onestore://common/web?url=" + encodeURIComponent(targetWebUrl);
-            
-            // 1. 스마트폰의 원스토어 앱 실행 시도
-            window.location.href = onestoreScheme;
-
-            // 2. PC 또는 원스토어 미설치/차단 기기 대응 (0.8초 후 웹으로 열기)
-            var start = Date.now();
-            setTimeout(function() {
-                if (Date.now() - start < 1500) {
-                    window.location.href = targetWebUrl;
-                }
-            }, 800);
-        }
-    </script>
+  
 </body>
 </html>
