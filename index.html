@@ -6,7 +6,7 @@
     <title>inssworksoft | 모바일 인디게임 개발사</title>
     <!-- 구글 폰트 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <!-- Font Awesome 공식 아이콘 CDN (Threads, Instagram 정품 벡터) -->
+    <!-- Font Awesome 공식 아이콘 CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
@@ -118,6 +118,7 @@
             display: flex;
             flex-direction: column;
             gap: 28px;
+            flex: 1;
         }
 
         /* 소개 카드 */
@@ -200,17 +201,6 @@
             background-color: #212532;
         }
 
-        .game-item.disabled {
-            cursor: default;
-            opacity: 0.75;
-        }
-
-        .game-item.disabled:active {
-            transform: none;
-            border-color: var(--border-color);
-            background-color: var(--card-bg);
-        }
-
         .game-thumb {
             width: 60px;
             height: 60px;
@@ -219,15 +209,6 @@
             object-fit: cover;
             flex-shrink: 0;
             border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .thumb-placeholder {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64748b;
-            font-size: 11px;
-            font-weight: 700;
         }
 
         .game-info {
@@ -252,12 +233,6 @@
             font-size: 12px;
             color: var(--text-sub);
             line-height: 1.4;
-        }
-
-        .game-subnote {
-            font-size: 11px;
-            color: #94a3b8;
-            opacity: 0.85;
         }
 
         .item-arrow {
@@ -299,7 +274,7 @@
             color: var(--text-sub);
             transition: all 0.2s ease;
             text-decoration: none;
-            font-size: 20px; /* 폰트어썸 아이콘 크기 */
+            font-size: 20px;
         }
 
         .social-btn:hover, .social-btn:active {
@@ -373,16 +348,15 @@
                     <div class="item-arrow">›</div>
                 </a>
 
-                <!-- 게임 3: BeatOne  -->
+                <!-- 게임 3: BeatOne -->
                 <a href="https://onesto.re/OA01011676" target="_blank" rel="noopener noreferrer" class="game-item">
                     <img src="images/icon_3.png" alt="BeatOne" class="game-thumb" onerror="this.src='https://via.placeholder.com/60/2a2f3d/ffffff?text=GAME'">
                     <div class="game-info">
                         <div class="game-title">BeatOne</div>
                         <div class="game-meta">2026 · 원스토어</div>
-                        <div class="game-subnote"></div>
                     </div>
                     <div class="item-arrow">›</div>
-                </div>
+                </a>
 
                 <!-- 게임 4: 디펜스말고공격 -->
                 <div class="game-item">
@@ -395,7 +369,7 @@
                 </div>
             </section>
 
-            <!-- 3. 쓰레드 / 인스타그램 링크 (Font Awesome 정품 아이콘) -->
+            <!-- 3. 쓰레드 / 인스타그램 링크 -->
             <section class="social-links">
                 <!-- 쓰레드 -->
                 <a href="https://www.threads.net/@inssworksoft" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Threads">
@@ -416,6 +390,5 @@
         </footer>
     </div>
 
-  
 </body>
 </html>
