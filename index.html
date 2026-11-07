@@ -209,6 +209,17 @@
             background-color: #212532;
         }
 
+        .game-item.disabled {
+            cursor: default;
+            opacity: 0.85;
+        }
+
+        .game-item.disabled:active {
+            transform: none;
+            border-color: var(--border-color);
+            background-color: var(--card-bg);
+        }
+
         .game-thumb {
             width: 60px;
             height: 60px;
@@ -375,6 +386,16 @@
                     </div>
                     <div class="item-arrow">›</div>
                 </a>
+
+                <!-- 게임 5: 멍냥팡 (신규 추가) -->
+                <div class="game-item disabled">
+                    <img src="images/icon_5.png" alt="멍냥팡" class="game-thumb" onerror="this.src='https://via.placeholder.com/60/2a2f3d/ffffff?text=GAME'">
+                    <div class="game-info">
+                        <div class="game-title">멍냥팡</div>
+                        <div class="game-meta">2026 · 출시예정</div>
+                    </div>
+                    <div class="coming-tag">출시예정</div>
+                </div>
             </section>
 
             <!-- 3. 쓰레드 / 인스타그램 링크 -->
